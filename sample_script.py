@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 # init driver
-driver = webdriver.Chrome()
+driver = webdriver.Chrome(executable_path='/Users/bojanskaljak/Desktop/JoBeASY/python-selenium-automation/chromedriver 2')
 driver.maximize_window()
 
 # open the url
@@ -15,7 +15,7 @@ search.send_keys('Dress')
 
 # wait for 4 sec
 sleep(4)
-
+#test update
 # click search
 driver.find_element(By.NAME, 'btnK').click()
 

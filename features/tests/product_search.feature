@@ -2,8 +2,8 @@
 Feature: Test Scenarios for Search functionality
 
   Scenario: User can search for a product
-    Given open Google page
-    When input Bags into search field
-    And click on search icon
-    Then product results for Bags are shown
-    And first result contains Bags
+    Given Open Google page
+    When Input Shoes into search field
+    And Click on search icon
+    Then Product results for Shoes are shown
+    And First result contains Shoes

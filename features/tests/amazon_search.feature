@@ -1,6 +1,8 @@
 # Created by bojanskaljak at 5/3/22
-Feature: # Enter feature name here
-  # Enter feature description here
+Feature: Test Scenarios for Search functionality
 
-  Scenario: # Enter scenario name here
-    # Enter steps here
+  Scenario: User can search for a product
+    Given Open Google page
+    When Input Shoes into search field
+    And Click on search icon
+    Then Product results for Shoes are shown

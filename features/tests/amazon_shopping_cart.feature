@@ -1,6 +1,7 @@
 # Created by bojanskaljak at 5/10/22
-Feature: # Enter feature name here
-  # Enter feature description here
+Feature: Test Scenario for default empty Shopping cart
 
-  Scenario: # Enter scenario name here
-    # Enter steps here
+  Scenario: Verify shopping cart is empty by default
+    Given Open Amazon page
+    When Clicking on Shopping Cart
+    Then Verify Your Amazon Cart is empty is appearing

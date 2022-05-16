@@ -1,6 +1,5 @@
-# Created by bojanskaljak at 5/14/22
-Feature: # Enter feature name here
-  # Enter feature description here
+Feature: Tests for Best Seller page
 
-  Scenario: # Enter scenario name here
-    # Enter steps here
+  Scenario: User sees correct number of subheader links
+    Given Open Amazon BestSellers page
+    Then Verify there are 5 subheader links

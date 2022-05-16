@@ -10,13 +10,13 @@ Feature: Tests for Amazon search
     |dress        |"dress"        |
     |spoons       |"spoons"       |
 
+
   Scenario: Product gets added to the cart
     Given Open Amazon page
-    When Search for 
+    When Search for lol surprise omg doll
     And Click on the first product
     And Click on Add to cart btn
     Then Verify cart has 1 item
-
 
 
 

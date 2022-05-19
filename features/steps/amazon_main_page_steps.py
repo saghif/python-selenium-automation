@@ -1,8 +1,6 @@
-from time import sleep
-
 from selenium.webdriver.common.by import By
 from behave import given, when, then, step
-
+from selenium.webdriver.support import expected_conditions as EC
 
 SEARCH_INPUT = (By.ID, 'twotabsearchtextbox')
 SEARCH_BTN = (By.ID, 'nav-search-submit-button')
@@ -11,6 +9,7 @@ FOOTER_LINKS = (By.CSS_SELECTOR, 'td.navFooterDescItem a')
 CLICK_PRODUCT = (By.CSS_SELECTOR, 'span.a-price-whole')
 ADD_CART_BTN = (By.CSS_SELECTOR, '#add-to-cart-button')
 CARD_COUNT = (By.CSS_SELECTOR, '#nav-cart-count')
+SIGN_IN_BTN = (By.CSS_SELECTOR, "#nav-signin-tooltip .nav-action-inner")
 
 
 @given('Open Amazon page')
@@ -27,6 +26,14 @@ def search_amazon(context, search_word):
 @when('Click on Add to cart btn')
 def click_add(context):
     context.driver.find_element(*ADD_CART_BTN).click()
+
+
+@when('Click on button from SignIn popup')
+def click_sign_in_btn(context):
+    sign_in_btn = context.driver.wait.until(
+        EC.element_to_be_clickable(SIGN_IN_BTN), 'Sign in btn not clickable'
+    )
+    sign_in_btn.click()
 
 
 @then('Verify hamburger menu btn present')

@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then
+from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 
 SEARCH_INPUT = (By.NAME, 'q')
@@ -11,20 +12,21 @@ def open_google(context):
     context.driver.get('https://www.google.com/')
 
 
-@when('Input {search_word} into search field')
-def input_search(context, search_word):
+@when('Input {search_word_input} into search field')
+def input_search(context, search_word_input):
     search = context.driver.find_element(*SEARCH_INPUT)
     search.clear()
-    search.send_keys(search_word)
-    sleep(4)
+    search.send_keys(search_word_input)
 
 
 @when('Click on search icon')
 def click_search_icon(context):
     context.driver.find_element(*SEARCH_SUBMIT).click()
-    sleep(1)
+    context.driver.wait.until(EC.url_contains('https://www.google.com/search?'),
+                              message='Sign in page never opened'
+                              )
 
 
-@then('Product results for {search_word} are shown')
-def verify_found_results_text(context, search_word):
-    assert search_word.lower() in context.driver.current_url.lower(), f"Expected query not in {context.driver.current_url.lower()}"
+@then('Product results for {search_word_input} are shown')
+def verify_found_results_text(context, search_word_input):
+    assert search_word_input.lower() in context.driver.current_url.lower(), f"Expected query not in {context.driver.current_url.lower()}"

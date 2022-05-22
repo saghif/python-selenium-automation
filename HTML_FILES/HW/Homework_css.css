@@ -1,0 +1,42 @@
+body {
+    background-image: url('back_image.jpeg');
+    margin: 2px;
+}
+div.image_ingredient {
+    padding: 5px;
+    margin-top: 25px;
+    background-color: white;
+}
+ol {
+    background-color: white;
+}
+h4 {
+    background-color: #697a8c;
+    color: #f26bee;
+    font-size: 30px;
+}
+h2 {
+    background-color: #f26bee;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: cursive;
+    font-size: 50px;
+}
+hr{
+    border-top: 2px solid #f26bee;
+}
+a:link {
+    color: grey;
+}
+
+a:visited {
+    color: darkmagenta;
+}
+
+a:hover {
+    color: darkred;
+}
+
+a:active {
+    color: navy;
+}

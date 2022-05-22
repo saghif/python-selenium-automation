@@ -19,7 +19,6 @@ Feature: Tests for Amazon search
     Then Verify cart has 1 item
 
 
-
   Scenario: User sees ham menu btn on the main page
     Given Open Amazon page
     Then Verify hamburger menu btn present
@@ -28,3 +27,5 @@ Feature: Tests for Amazon search
   Scenario: User sees correct amount of footer links
     Given Open Amazon page
     Then Verify there are 38 footer links
+
+

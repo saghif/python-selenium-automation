@@ -1,6 +1,8 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then, step
 from selenium.webdriver.support import expected_conditions as EC
+from time import sleep
+
 
 SEARCH_INPUT = (By.ID, 'twotabsearchtextbox')
 SEARCH_BTN = (By.ID, 'nav-search-submit-button')
@@ -10,6 +12,9 @@ CLICK_PRODUCT = (By.CSS_SELECTOR, 'span.a-price-whole')
 ADD_CART_BTN = (By.CSS_SELECTOR, '#add-to-cart-button')
 CARD_COUNT = (By.CSS_SELECTOR, '#nav-cart-count')
 SIGN_IN_BTN = (By.CSS_SELECTOR, "#nav-signin-tooltip .nav-action-inner")
+SEARCH_RESULTS = (By.CSS_SELECTOR, "[data-component-type='s-search-result']")
+PRODUCT_TITLE = (By.CSS_SELECTOR, 'h2 span.a-text-normal')
+PRODUCT_IMG = (By.CSS_SELECTOR, ".s-image[data-image-latency='s-product-image']")
 
 
 @given('Open Amazon page')
@@ -36,6 +41,11 @@ def click_sign_in_btn(context):
     sign_in_btn.click()
 
 
+@when('Wait for {seconds} seconds')
+def wait_sec(context, seconds):
+    sleep(int(seconds))  # "5" => 5
+
+
 @then('Verify hamburger menu btn present')
 def verify_ham_menu(context):
     context.driver.find_element(*HAM_MENU_BTN)
@@ -53,3 +63,22 @@ def verify_cart_count(context, expected_number):
     expected_number = int(expected_number)
     card_count = context.driver.find_elements(*CARD_COUNT)
     assert len(card_count) == expected_number, f'Expected {expected_number} links, but got {len(card_count)}'
+
+
+@then('Verify that every product has a name and an image')
+def verify_products_name_img(context):
+    all_products = context.driver.find_elements(*SEARCH_RESULTS)
+    for product in all_products:
+        title = product.find_element(*PRODUCT_TITLE).text
+        assert title, 'Error! Title should not be blank'
+        product.find_element(*PRODUCT_IMG)
+
+
+@then('SignIn popup is present')
+def verify_signin_popup_present(context):
+    context.driver.wait.until(EC.element_to_be_clickable(SIGN_IN_BTN), 'Sign in btn not clickable')
+
+
+@then('SignIn popup disappears')
+def verify_signin_popup_not_present(context):
+    context.driver.wait.until_not(EC.element_to_be_clickable(SIGN_IN_BTN), 'Sign in btn did not disappear')

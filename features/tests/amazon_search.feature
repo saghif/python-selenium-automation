@@ -29,3 +29,7 @@ Feature: Tests for Amazon search
     Then Verify there are 38 footer links
 
 
+  Scenario: Verify that user can see product names and images
+    Given Open Amazon page
+    When Search for coffee
+    Then Verify that every product has a name and an image

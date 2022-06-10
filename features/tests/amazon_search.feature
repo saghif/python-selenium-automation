@@ -33,3 +33,9 @@ Feature: Tests for Amazon search
     Given Open Amazon page
     When Search for coffee
     Then Verify that every product has a name and an image
+
+
+  Scenario: User can see language options
+    Given Open Amazon page
+    When Hover over language options
+    Then Verify Spanish option present

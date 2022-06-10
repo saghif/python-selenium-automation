@@ -15,17 +15,26 @@ SIGN_IN_BTN = (By.CSS_SELECTOR, "#nav-signin-tooltip .nav-action-inner")
 SEARCH_RESULTS = (By.CSS_SELECTOR, "[data-component-type='s-search-result']")
 PRODUCT_TITLE = (By.CSS_SELECTOR, 'h2 span.a-text-normal')
 PRODUCT_IMG = (By.CSS_SELECTOR, ".s-image[data-image-latency='s-product-image']")
+ORDERS_BTN = (By.ID, 'nav-orders')
 
 
 @given('Open Amazon page')
 def open_amazon(context):
-    context.driver.get('https://www.amazon.com/')
+    # context.driver.get('https://www.amazon.com/')
+    context.app.main_page.open_main_page()
+
+
+@when('Click Amazon Orders link')
+def orders_link(context):
+    context.app.header.orders_link()
+    # context.driver.find_element(*ORDERS_BTN).click()
 
 
 @when('Search for {search_word}')
 def search_amazon(context, search_word):
-    context.driver.find_element(*SEARCH_INPUT).send_keys(search_word)
-    context.driver.find_element(*SEARCH_BTN).click()
+    # context.driver.find_element(*SEARCH_INPUT).send_keys(search_word)
+    # context.driver.find_element(*SEARCH_BTN).click()
+    context.app.header.search_amazon(search_word)
 
 
 @when('Click on Add to cart btn')
@@ -44,6 +53,11 @@ def click_sign_in_btn(context):
 @when('Wait for {seconds} seconds')
 def wait_sec(context, seconds):
     sleep(int(seconds))  # "5" => 5
+
+
+@when('Hover over language options')
+def hover_lang(context):
+    pass
 
 
 @then('Verify hamburger menu btn present')

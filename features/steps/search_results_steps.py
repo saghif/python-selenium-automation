@@ -14,7 +14,7 @@ def click_first_product(context):
 
 @then('Verify search results for {expected_result} are shown')
 def verify_search_results(context, expected_result):
-    actual_result = context.driver.find_element(*SEARCH_RESULT_TEXT).text
-    assert expected_result == actual_result, f'Error! Actual text {actual_result} does not match expected {expected_result}'
-
+    # actual_result = context.driver.find_element(*SEARCH_RESULT_TEXT).text
+    # assert expected_result == actual_result, f'Error! Actual text {actual_result} does not match expected {expected_result}'
+    context.app.search_results_page.verify_search_results(expected_result)
 

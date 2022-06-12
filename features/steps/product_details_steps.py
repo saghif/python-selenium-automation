@@ -29,6 +29,16 @@ def get_product_name(context):
     print(f'Current product: {context.product_name}')
 
 
+@when('User hovers over New Arrivals')
+def hover_over_options(context):
+    context.app.header.hover_over_options()
+
+
+@then('Verifies user sees the deals')
+def verify_fashion_deals(context):
+    context.app.header.verify_fashion_deals()
+
+
 @then('Verify user can click through colors')
 def verify_clicking_colors(context):
     expected_colors = ['Black', 'Solid Black', 'Navy']

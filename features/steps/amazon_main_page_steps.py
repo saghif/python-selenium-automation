@@ -57,7 +57,12 @@ def wait_sec(context, seconds):
 
 @when('Hover over language options')
 def hover_lang(context):
-    pass
+    context.app.header.hover_lang()
+
+
+@when('Select department by {alias}')
+def select_dept(context, alias):
+    context.app.header.select_dept(alias)
 
 
 @then('Verify hamburger menu btn present')
@@ -96,3 +101,14 @@ def verify_signin_popup_present(context):
 @then('SignIn popup disappears')
 def verify_signin_popup_not_present(context):
     context.driver.wait.until_not(EC.element_to_be_clickable(SIGN_IN_BTN), 'Sign in btn did not disappear')
+
+
+@then('Verify Spanish option present')
+def verify_spanish_lang(context):
+    context.app.header.verify_spanish_lang()
+
+
+@then("Verify {department} department is selected")
+def verify_department(context, department):
+    context.app.header.verify_department(department)
+
